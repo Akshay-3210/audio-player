@@ -85,7 +85,7 @@ async function dsiplayalbums() {
 
     for (let i = 0; i < array.length; i++) {
         const e = array[i];
-        if (e.href.includes("\songs")) {
+        if (e.href.includes("\songs") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-2)[0];
             //meta data
             let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songs/${folder}/info.json`);
