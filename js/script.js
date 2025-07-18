@@ -19,7 +19,7 @@ function formatSecondsToMinutes(seconds) {
 
 async function gsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`http://127.0.0.1:3000/songs/${folder}`);
+    let a = await fetch(`https://akshay-3210.github.io/audio-player/songs/${folder}`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -76,7 +76,7 @@ const playmusic = (e, pause = false) => {
 }
 
 async function dsiplayalbums() {
-    let a = await fetch(`http://127.0.0.1:3000/songs/`);
+    let a = await fetch(`https://akshay-3210.github.io/audio-player/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -89,7 +89,7 @@ async function dsiplayalbums() {
         if (e.href.includes("\songs")) {
             let folder = e.href.split("/").slice(-2)[0];
             //meta data
-            let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`);
+            let a = await fetch(`https://akshay-3210.github.io/audio-player/songs/${folder}/info.json`);
             // console.log(a);
             let response = await a.json();
             // console.log(response);
@@ -101,7 +101,7 @@ async function dsiplayalbums() {
                                 <!-- Green Circle --><circle cx="50" cy="50" r="45" fill="#1ed760" /><!-- Black Triangle --><polygon points="40,30 70,50 40,70" fill="black" />
                             </svg>
                         </div>
-                        <img src=http://127.0.0.1:3000/songs/${folder}/cover.jpg alt="">
+                        <img src=https://akshay-3210.github.io/audio-player/songs/${folder}/cover.jpg alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                     </div>
