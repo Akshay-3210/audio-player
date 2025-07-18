@@ -18,7 +18,7 @@ function formatSecondsToMinutes(seconds) {
 
 async function gsongs(folder) {
     currfolder = folder;
-    let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songssongs/${folder}`);
+    let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songs/${folder}`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -75,7 +75,7 @@ const playmusic = (e, pause = false) => {
 }
 
 async function dsiplayalbums() {
-    let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songssongs/`);
+    let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -88,7 +88,7 @@ async function dsiplayalbums() {
         if (e.href.includes("\songs")) {
             let folder = e.href.split("/").slice(-2)[0];
             //meta data
-            let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songssongs/${folder}/info.json`);
+            let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songs/${folder}/info.json`);
             // console.log(a);
             let response = await a.json();
             // console.log(response);
@@ -100,7 +100,7 @@ async function dsiplayalbums() {
                                 <!-- Green Circle --><circle cx="50" cy="50" r="45" fill="#1ed760" /><!-- Black Triangle --><polygon points="40,30 70,50 40,70" fill="black" />
                             </svg>
                         </div>
-                        <img src=https://github.com/Akshay-3210/audio-player/tree/main/songssongs/${folder}/cover.jpg alt="">
+                        <img src=https://github.com/Akshay-3210/audio-player/tree/main/songs/${folder}/cover.jpg alt="">
                         <h2>${response.title}</h2>
                         <p>${response.description}</p>
                     </div>
