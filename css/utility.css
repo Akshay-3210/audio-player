@@ -1,0 +1,31 @@
+.bo{
+    /* border: 2px solid grey; */
+    border-radius:12px;
+}
+.m-1{
+    margin: 5px;
+}
+.fl{
+    display: flex;
+}
+.ju{
+    justify-content: center;
+}
+.it-c{
+    align-items: center;
+}
+.le{
+    align-items: center;
+}
+.ri{
+    align-items: center;
+}
+.bg-gr{
+    background-color: #121212;
+}
+.bg-gre{
+    background-color: #222222;
+}
+.bg-grey{
+    background-color: #1f1f1f;
+}
