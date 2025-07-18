@@ -16,7 +16,6 @@ function formatSecondsToMinutes(seconds) {
 }
 
 
-
 async function gsongs(folder) {
     currfolder = folder;
     let a = await fetch(`https://github.com/Akshay-3210/audio-player/tree/main/songssongs/${folder}`);
