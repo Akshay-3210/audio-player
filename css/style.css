@@ -15,6 +15,74 @@ body {
     color: white;
 }
 
+/* ================= Add Song & Search Inputs ================= */
+.add-song, .search-bar {
+    display: flex;
+    gap: 10px;
+    margin: 10px 20px;
+}
+
+.add-song input, .search-bar input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #5e5e5e;
+    background-color: #1c1c1c;
+    color: white;
+    font-size: 14px;
+}
+
+.add-song input::placeholder,
+.search-bar input::placeholder {
+    color: #888;
+}
+
+.add-song button {
+    background-color: #1db954; /* Spotify green vibe */
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-song button:hover {
+    background-color: #1ed760;
+}
+
+.search-bar input {
+    border: 1px solid #5e5e5e;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border: 1px solid #1db954;
+}
+
+/* Optional: Scroll styling for filtered song list */
+.g ul {
+    max-height: 200px; /* keep it scrollable */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #5e5e5e transparent;
+}
+
+.g ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.g ul::-webkit-scrollbar-thumb {
+    background-color: #5e5e5e;
+    border-radius: 4px;
+}
+
+.g ul::-webkit-scrollbar-thumb:hover {
+    background-color: #7a7a7a;
+}
+
+
 .t {
     flex-direction: row;
     align-items: center;
