@@ -21,6 +21,12 @@ async function gsongs(folder) {
 
     s = meta.songs;
 
+    renderSongList();
+    return s;
+}
+
+// Render song list dynamically
+function renderSongList() {
     let songul = document.querySelector(".g ul");
     songul.innerHTML = "";
 
@@ -46,8 +52,6 @@ async function gsongs(folder) {
             playmusic(name);
         });
     });
-
-    return s;
 }
 
 // Play a song
@@ -66,7 +70,6 @@ function playmusic(filename, pause = false) {
 // Display album cards
 async function dsiplayalbums() {
     let cardcon = document.querySelector(".cardcon");
-
     const albums = ["cs", "ncs", "shin"]; // SIMPLE LIST
 
     for (const folder of albums) {
@@ -92,20 +95,23 @@ async function dsiplayalbums() {
 }
 
 async function main() {
-
     await dsiplayalbums();
 
     await gsongs("cs");  // default album
     playmusic(s[0], true);
 
+    const playBtn = document.getElementById("play");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("previous");
+
     // Play / Pause
-    play.addEventListener("click", () => {
+    playBtn.addEventListener("click", () => {
         if (currentsong.paused) {
             currentsong.play();
-            play.src = "img/pause.svg";
+            playBtn.src = "img/pause.svg";
         } else {
             currentsong.pause();
-            play.src = "img/play.svg";
+            playBtn.src = "img/play.svg";
         }
     });
 
@@ -126,22 +132,19 @@ async function main() {
     });
 
     // Next / Previous
-    previous.addEventListener("click", () => {
-    let currentFile = decodeURIComponent(currentsong.src.split("/").pop());
-    let idx = s.indexOf(currentFile);
+    prevBtn.addEventListener("click", () => {
+        let currentFile = decodeURIComponent(currentsong.src.split("/").pop());
+        let idx = s.indexOf(currentFile);
+        idx = idx === 0 ? s.length - 1 : idx - 1;
+        playmusic(s[idx]);
+    });
 
-    idx = idx === 0 ? s.length - 1 : idx - 1;
-    playmusic(s[idx]);
-});
-
-next.addEventListener("click", () => {
-    let currentFile = decodeURIComponent(currentsong.src.split("/").pop());
-    let idx = s.indexOf(currentFile);
-
-    idx = idx === s.length - 1 ? 0 : idx + 1;
-    playmusic(s[idx]);
-});
-
+    nextBtn.addEventListener("click", () => {
+        let currentFile = decodeURIComponent(currentsong.src.split("/").pop());
+        let idx = s.indexOf(currentFile);
+        idx = idx === s.length - 1 ? 0 : idx + 1;
+        playmusic(s[idx]);
+    });
 
     // Volume
     document.querySelector(".range input").addEventListener("input", e => {
@@ -160,8 +163,46 @@ next.addEventListener("click", () => {
         document.querySelector(".range input").value = currentsong.volume * 100;
     });
 
-    
+    // ===== Add Song =====
+    document.getElementById("addSongBtn").addEventListener("click", () => {
+        const input = document.getElementById("newSong");
+        const filename = input.value.trim();
+        if (!filename) return alert("Enter a filename!");
 
+        s.push(filename); // add to current song list
+        renderSongList();
+        input.value = "";
+    });
+
+    // ===== Search Songs =====
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = s.filter(song => song.toLowerCase().includes(query));
+        const songul = document.querySelector(".g ul");
+        songul.innerHTML = "";
+        for (const file of filtered) {
+            songul.innerHTML += `
+            <li>
+                <img src="img/music.svg" style="filter: invert(1);">
+                <div class="info">
+                    <div>${file}</div>
+                    <div></div>
+                </div>
+                <div class="playnow">
+                    <span>Play now</span>
+                    <img src="img/play.svg" style="filter: invert(1);">
+                </div>
+            </li>`;
+        }
+
+        // Reattach click listeners
+        document.querySelectorAll(".g li").forEach(li => {
+            li.addEventListener("click", () => {
+                let name = li.querySelector(".info div").innerText;
+                playmusic(name);
+            });
+        });
+    });
 }
 
 main();
