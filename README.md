@@ -1,7 +1,7 @@
 # Audio Player app
 
 This is made by using html,css,js for UI design and front-end.
-And using local storage for storing songs in sub-folders(containing songs,cover.jpg,info.json(containing title,description,array of songs(.mp3 file))).
+And storing songs in sub-folders(containing songs,cover.jpg,info.json(containing title,description,array of songs(.mp3 file))).
 
 # Functionality
 
